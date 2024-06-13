@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrierungsformular</title>
-    <link href="css/fonts_sourcesanspro.css" rel="stylesheet">
-    <link href="css/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="css/login.css" rel="stylesheet" type="text/css">
-    <link href="css/register.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>css/fonts_sourcesanspro.css" rel="stylesheet">
+    <link href="<?= ASSET_PATH ?>css/material-icons.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>css/login.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>css/register.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <h1>Registrierungsformular</h1>

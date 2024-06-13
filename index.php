@@ -1,13 +1,22 @@
 <?php
 
-$path = $_SERVER['REQUEST_URI'];
+# Applikationskonstanten definieren
+
+define('HOST_URL', (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST']);
+define('APP_PATH', rtrim(dirname($_SERVER['PHP_SELF']), '\/'));
+define('APP_URL', HOST_URL . APP_PATH);
+define('APP_ROOT', $_SERVER['DOCUMENT_ROOT'] . APP_PATH);
+define('ASSET_PATH', APP_PATH . '/assets');
+
+$path = substr(explode('?', $_SERVER['REQUEST_URI'])[0], strlen(APP_PATH));
+
 
 var_dump($path);
 
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="de">
 
 <head>
@@ -46,4 +55,4 @@ var_dump($path);
     </footer>
 </body>
 
-</html>
+</html> -->

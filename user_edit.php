@@ -18,11 +18,11 @@ $user = User::find($id) ?? exit('no User found');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benutzerdaten bearbeiten</title>
-    <link href="css/fonts_sourcesanspro.css" rel="stylesheet">
-    <link href="css/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="css/form.css" rel="stylesheet" type="text/css">
-    <link href="css/edit.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/fonts_sourcesanspro.css" rel="stylesheet">
+    <link href="<?= ASSET_PATH ?>css/material-icons.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>css/style.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>css/form.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>css/edit.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
