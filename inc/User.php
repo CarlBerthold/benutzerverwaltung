@@ -352,4 +352,27 @@ class User
             exit;
         }
     }
+
+
+    public static function findByEmail(string $email): self|NULL
+    {
+        // Datenbankverbindung 'holen'
+        $db = self::$db;
+        // SQL-Statement mit unbenannten Platzhaltern
+        $sql = 'SELECT * FROM `users` where `email` = ?';
+
+        try {
+            $PDOStatement = $db->prepare($sql);
+            $PDOStatement->execute([$email]);
+            # Fetch-Mode auf PDO::FETCH_CLASS ändern
+            $PDOStatement->setFetchMode(PDO::FETCH_CLASS, 'User');
+            $user = $PDOStatement->fetch();
+        } catch (PDOException $e) {
+            echo $e->getMessage(), PHP_EOL;
+            // hier ggf. Header-Weiterleitung auf Fehlerseite
+            exit;
+        }
+
+        return $user ?: NULL;
+    }
 }

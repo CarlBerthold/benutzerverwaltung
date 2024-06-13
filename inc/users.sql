@@ -61,6 +61,10 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `role`,
 (9, 'Kevin', 'Richter', 'kevin@example.com', 'abc123', 'admin', '2023-09-25 20:45:00', '2023-10-15 13:40:00'),
 (10, 'Maria', 'Lehmann', 'maria@example.com', 'passpass', 'user', '2023-10-30 22:00:00', '2023-11-20 15:50:00');
 
+
+INSERT INTO `users` (`firstname`, `lastname`, `email`, `password`, `role`) VALUES
+  ('Tom', 'Mueller', 'mueller@tom.de', 'test', 'user');
+
 --
 -- Indizes der exportierten Tabellen
 --

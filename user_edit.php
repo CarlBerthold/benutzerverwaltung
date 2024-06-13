@@ -1,16 +1,13 @@
 <?php
+require_once __DIR__ . '/inc/database.inc.php';
+require_once __DIR__ . '/inc/User.php';
 
-require_once 'inc/data.inc.php';
+$db = connectDB();
+User::setDb($db);
 
-$users = fetchData();
+$id = 33;
 
-// eine User anhand seiner Id heraussuchen
-
-// $id = 99;
-$id = 1;
-
-$idList = array_column($users, 'id');
-$user = in_array($id, $idList) ? $users[array_search($id, $idList)] : exit("kein User mit der Id = $id gefunden!");
+$user = User::find($id) ?? exit('no User found');
 
 
 ?>
@@ -43,31 +40,31 @@ $user = in_array($id, $idList) ? $users[array_search($id, $idList)] : exit("kein
                     <legend>Benutzerdaten</legend>
                     <div>
                         <label for="id">Benutzer-Id: </label>
-                        <input type="text" id="id" readonly class="readonly" value="<?= $user['id'] ?>">
+                        <input type="text" id="id" readonly class="readonly" value="<?= $user->id?>">
                     </div>
                     <div>
                         <label for="firstname">Vorname: </label>
-                        <input type="text" name="firstname" id="firstname" required value="<?= $user['firstname'] ?>">
+                        <input type="text" name="firstname" id="firstname" required value="<?= $user->firstname ?>">
                     </div>
                     <div>
                         <label for="lastname">Nachname: </label>
-                        <input type="text" name="lastname" id="lastname" required value="<?= $user['lastname'] ?>">
+                        <input type="text" name="lastname" id="lastname" required value="<?= $user->lastname ?>">
                     </div>
                     <div>
                         <label for="email">E-Mail: </label>
-                        <input type="email" name="email" id="email" required value="<?= $user['email'] ?>">
+                        <input type="email" name="email" id="email" required value="<?= $user->email ?>">
                     </div>
                     <div>
                         <label for="password">Passwort: </label>
-                        <input type="password" name="password" id="password" required value="<?= $user['password'] ?>">
+                        <input type="password" name="password" id="password" required value="<?= $user->password ?>">
                     </div>
                     <div>
                         <label for="created_at">registriert seit: </label>
-                        <input type="text" id="created_at" readonly class="readonly" value="<?= $user['created_at'] ?>">
+                        <input type="text" id="created_at" readonly class="readonly" value="<?= $user->createdAt ?>">
                     </div>
                     <div>
                         <label for="updated_at">geändert am: </label>
-                        <input type="text" name="updated_at" id="updated_at" readonly class="readonly" value="<?= $user['updated_at'] ?>">
+                        <input type="text" id="updated_at" readonly class="readonly" value="<?= $user->updatedAt ?>">
                     </div>
                 </fieldset>
                 <fieldset>

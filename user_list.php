@@ -2,9 +2,16 @@
 
 ## Kommentare entfernt - sonst keine Anpassung notwendig
 
-require_once 'inc/data.inc.php';
+// require_once 'inc/data.inc.php';
+require_once __DIR__ . '/inc/database.inc.php';
+require_once __DIR__ . '/inc/User.php';
 
-$users = fetchData();
+$db = connectDB();
+User::setDb($db);
+$users = User::findAll();
+
+//var_dump($users);
+
 
 // neues Array mit den deutschen Spaltenbezeichnern
 $columnNamesDe = [
@@ -12,7 +19,7 @@ $columnNamesDe = [
     'firstname' => 'Vorname',
     'lastname' => 'Nachname',
     'email' => 'E-Mail',
-    'password' => 'Passwort',
+    //'password' => 'Passwort',
     'role' => 'Rolle',
     'created_at' => 'registriert seit',
     'updated_at' => 'geändert am',
@@ -52,8 +59,10 @@ $columnNamesDe = [
                 <tbody>
                     <?php foreach ($users as $user) { ?>
                         <tr>
-                            <?php foreach ($user as $value) { ?>
-                                <td><?= $value ?></td>
+                            <?php foreach ($user->getAttributes() as $key => $value) { ?>
+                                <?php if($key !== 'password') : ?>
+                                    <td><?= $value ?></td>
+                                <?php endif; ?>
                             <?php } ?>
                         </tr>
                     <?php } ?>

@@ -2,12 +2,48 @@
 
 # Änderungen: $userData aus Datei data.inc.php laden
 # der Key 'loginname' muss durch 'email' ersetzt werden - in der Datenstruktur ist email als Anmeldename vorgesehen
-
-require_once __DIR__ . '/inc/data.inc.php';
-
+require_once __DIR__ . '/inc/database.inc.php';
+require_once __DIR__ . '/inc/User.php';
 
 # Session starten
 session_start();
+
+
+$db = connectDB();
+User::setDb($db);
+
+if($_POST) {
+    $user = User::findByEmail($_POST['email']);
+
+    if($user && password_verify($_POST['password'], $user->password)) {
+        $_SESSION['loggedin'] = TRUE;
+        $_SESSION['name'] = $user->firstname;
+        session_regenerate_id();
+        header('Location: loggedin.php', TRUE, 307);
+        exit;
+    } else {
+        $message = 'Die Kombination Benutzername und Kennwort stimmen nicht überein!';
+    }
+}
+
+
+/* array(5) {
+    ["firstname"]=>
+    string(6) "Marija"
+    ["lastname"]=>
+    string(5) "Block"
+    ["email"]=>
+    string(20) "miroslaw94@posteo.de"
+    ["password"]=>
+    string(12) "hVeD'[^+U1Ik"
+    ["role"]=>
+    string(4) "user"
+  } */
+
+
+# $userData = fetchData();
+
+
 
 /* $userData = [
     [
@@ -22,13 +58,13 @@ session_start();
     ],
 ]; */
 
-$userData = fetchData();
+// $userData = fetchData();
 
 // $loginNames = array_column($userData, 'password', 'loginname');
 # notwendige Anpassung - unsere Keys müssen jetzt die E-Mailadressen sein
-$loginNames = array_column($userData, 'password', 'email');
+// $loginNames = array_column($userData, 'password', 'email');
 
-if ($_POST) {
+/* if ($_POST) {
     if (array_key_exists($_POST['email'], $loginNames) && $_POST['password'] === $loginNames[$_POST['email']]) {
         $_SESSION['loggedin'] = TRUE;
         # Benutzernamen auslesen - z. Z. aufwändiger, das liegt an unserer Vorgehensweise und auch der Datenstruktur
@@ -40,8 +76,10 @@ if ($_POST) {
         exit;
     }
 
-    $message = 'Die Kombination Benutzername und Kennwort stimmen nicht überein!';
-}
+    
+} */
+
+
 
 ?>
 <!DOCTYPE html>

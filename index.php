@@ -1,3 +1,12 @@
+<?php
+
+$path = $_SERVER['REQUEST_URI'];
+
+var_dump($path);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="de">
 
