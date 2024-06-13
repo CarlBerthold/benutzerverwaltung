@@ -1,0 +1,335 @@
+/* Normalisierung, Struktur- und Grundelemente */
+
+*,
+::before,
+::after {
+   box-sizing: border-box;
+}
+
+body,
+form,
+div {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: "Source Sans Pro", "Segoe UI ", "Segoe WPC", "Segoe UI", "SFUIText-Light", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+   min-height: 100vh;
+   min-width: 345px;
+   width: 100%;
+   padding: 0.5em 1rem;
+   display: grid;
+   grid-template-rows: 1fr auto;
+   grid-template-columns: auto;
+   grid-template-areas: "main""footer";
+   font-size: 1.2rem;
+   color: #444;
+   background-color: #f1f1f1;
+}
+
+p {
+   margin: 0.5rem 0;
+}
+
+#header {
+   grid-area: header;
+   color: lightgray;
+}
+
+
+nav {
+    display: block;
+    background-color: #e3e3e3;
+    padding: 0.5em 1em;
+}
+
+#nav {
+   grid-area: nav;
+   /* background-color: #f1f1f1; */
+   margin-bottom: 1em;
+   position: sticky;
+   top: 0;
+   z-index: 100;
+}
+
+#nav>ul {
+   position: relative;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+h1 {
+    color: #d3d3d3;
+}
+
+
+#showKat {
+   position: absolute;
+   right: 0;
+   color:  rgb(175, 168, 76);
+   padding-right: 1em;
+}
+
+#nav>ul>li>a {
+   display: inline-block;
+   font-size: 1.2rem;
+   padding: 0.5rem 1rem;
+   text-decoration: none;
+   color: #696969;
+}
+
+#nav>ul>li>a:hover {
+   background-color:tomato;
+   color: #F5F5F5;
+}
+
+#nav>ul>li>a:active {
+   background-color: rgb(175, 168, 76);
+   color: #0000CD;
+}
+
+#main {
+   grid-area: main;
+   margin-top: 1rem;
+   padding: 1rem;
+   font-size: 1.2rem;
+   width: 100%;
+}
+
+#footer {
+   grid-area: footer;
+   background-color:#4CAF5011;
+   color: #4CAF50;
+   min-height: 3em;
+   padding-left: 0.5em;
+}
+
+
+button {
+   margin-right: 0.5rem;
+}
+
+details {
+   margin: 0 0.5em;
+   padding: 0.5em;
+}
+
+label {
+   -webkit-user-select: none;  /* Chrome all / Safari all */
+   -moz-user-select: none;     /* Firefox all */
+   -ms-user-select: none;      /* IE 10+ */
+   user-select: none;          /* Likely future */
+}
+
+pre {
+   white-space: pre-wrap;
+}
+
+/* Klassen */
+
+.button,
+button {
+   display: inline-block;
+   padding: 0.5rem 1rem;
+   font-size: 1rem;
+   font-family: inherit;
+   font-family: 'Arimo', sans-serif;
+   text-decoration: none;
+   color: #696969;
+   background-color: #F5F5F5;
+   border: 0;
+   border-radius: 4px;
+   /* -webkit-appearance: button; */
+   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+      0 2px 10px 0 rgba(0, 0, 0, 0.12);
+   text-align: center;
+   cursor: pointer;
+   white-space: nowrap;
+   user-select: none;
+}
+
+button:focus,
+.button:focus {
+   outline: none;
+   border: none;
+}
+
+button:hover,
+.button:hover {
+   background-color: #4CAF50;
+   color: #F5F5F5;
+   outline: none;
+   border: none;
+}
+
+button:active,
+.button:active {
+   background-color: rgb(175, 168, 76);
+   color: #0000CD;
+}
+
+button:focus,
+.button:focus {
+   outline: none;
+}
+button:disabled {
+   filter: opacity(0.66);
+}
+button:disabled:hover {
+   cursor: default;
+   color: #696969;
+   background-color: #F5F5F5;
+   filter: opacity(0.5);
+}
+button.spacer_right,
+.button.spacer_right {
+   margin-right: 1.5em;
+}
+button.spacer_top,
+.button.spacer_top {
+   margin-top: 1em;
+}
+
+.cardbox {
+   background-color: #fefefe;
+   margin-bottom: 1em;
+   padding: 0.5em 1em;
+   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+ }
+
+.richtig {
+   background-color: lightgreen;
+}
+
+.falsch {
+   background-color: tomato;
+}
+
+.checkbox_falsch {
+   outline: 2px solid tomato;
+}
+
+.hide {
+   visibility: hidden;
+}
+
+.spacer_left {
+   margin-left: 3em;
+}
+
+.small {
+   font-size: 0.8em;
+}
+
+h2.richtig::after {
+   content: ' ' '\01F44D' ' - Frage richtig beantwortet - ' '\01F44D';
+   color: green;
+}
+h2.falsch::after {
+   content: ' ' '\2757' ' - Frage falsch beantwortet - ' '\2757';
+   color: tomato;
+}
+
+
+
+/* content allgemein */
+
+#main > section:first-of-type {
+   width: 100%;
+   overflow-x: auto;
+}
+
+
+.user_table {
+   border-spacing: 0.5rem;
+}
+
+.user_table tr {
+   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+      0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.user_table td {
+   padding: 0.33rem;
+   border-right: 2px solid rgba(0, 0, 0, 0.16);
+   vertical-align: top;
+}
+
+.user_table td:first-child {
+   padding: 0.33rem 0.1rem;
+   color: lightgray;
+   text-align: right;
+}
+
+.user_table td > p {
+   margin: 0;
+}
+
+.user_table td:last-child {
+   /* display: inline-block; */
+   white-space: nowrap;
+   border: none;
+   padding-left: 0;
+   padding-right: 0;
+   text-align: center;
+}
+
+.user_table td form {
+   display: inline-block;
+}
+
+
+/* Frage */
+
+section > h2 + div {
+   margin-inline: 2px;
+   padding-block: 0.35em 0.625em;
+   padding-inline: 0.75em;
+   border: 2px groove ThreeDFace;
+   margin-bottom: 0.5em;
+}
+
+form > fieldset:last-of-type {
+   margin-top: 0.5em;
+}
+
+form legend {
+   color: rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+
+.footer {
+    color: #999999;
+    font-size: 0.8em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#hinweis {
+   font-size: 1rem;
+}
+
+#hinweis p {
+   margin: 0;
+}
+
+/* Frage anzeigen Icon */
+
+.icon {
+    display: inline-block;
+    color: #696969;
+    padding: 0 0.5rem 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.icon:hover {
+    color: #4CAF50;
+}

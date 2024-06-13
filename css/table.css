@@ -1,0 +1,45 @@
+.user_table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* .user_table th:nth-of-type(3),
+.user_table th:nth-of-type(4),
+.user_table th:nth-of-type(5) {
+    width: 15%;
+}
+
+.user_table th:nth-of-type(6) {
+    width: 8%;
+}
+
+.user_table th:nth-of-type(7),
+.user_table th:nth-of-type(8),
+.user_table th:nth-of-type(9) {
+    width: 12%;
+} */
+.user_table th:nth-of-type(3),
+.user_table th:nth-of-type(4) {
+    width: 17.5%;
+}
+
+.user_table th:nth-of-type(5) {
+    width: 10.5%;
+}
+
+.user_table th:nth-of-type(6),
+.user_table th:nth-of-type(7),
+.user_table th:nth-of-type(8) {
+    width: 14.5%;
+}
+
+.user_table a {
+    text-decoration: none;
+}
+
+#message {
+    font-size: 1.2em;
+    color: cadetblue;
+    font-weight: 700;
+    text-align: center;
+}

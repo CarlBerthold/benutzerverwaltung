@@ -1,0 +1,79 @@
+.error {
+    outline: 2px solid red;
+    color: red;
+    background-color: #ff000024;
+}
+
+.error_message {
+    color: red;
+}
+
+fieldset {
+    position: relative;
+}
+
+details>summary {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 0;
+    padding-top: 0.1em;
+}
+
+details>summary:hover {
+    cursor: pointer;
+    color: #4caf50;
+}
+
+details>div {
+    position: absolute;
+    left: 1em;
+    right: 1em;
+    z-index: 100;
+    background-color: hsl(122, 39%, 95%);
+    border: 1px groove #a0a0a0;
+    border-radius: 0.3em;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding: 0.5em;
+    font-size: 1.2rem;
+}
+
+details>div>h4 {
+    margin: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.3em;
+}
+
+details>div>p {
+    margin: 0;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+details summary::marker {
+    color: #a0a0a0;
+    font-family: "Material Icons";
+    content: "\e88e";
+}
+
+details summary:hover::marker {
+    color: #4caf50;
+}
+
+details[open] summary {
+    padding-bottom: 0.3em;
+}
+
+details[open] summary:hover::marker {
+    content: "\e5cd";
+    color: #4caf50;
+}
+
+details[open] summary:focus {
+    outline: none;
+}
+
+:focus,
+button:focus,
+.button:focus {
+    outline: 2px solid #4caf50;
+}

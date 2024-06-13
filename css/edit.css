@@ -1,0 +1,17 @@
+#reg-data {
+    display: grid;
+    grid-template-columns: max-content 15vw;
+    column-gap: .5em;
+    row-gap: .3em;
+}
+
+#reg-data div {
+    display: grid;
+    grid-column: 1 / 3;
+    grid-template-columns: subgrid;
+}
+
+.readonly {
+    color: gray;
+    background-color: lightcoral;
+}
