@@ -3,14 +3,20 @@
 function loggedinAction()
 {
     if (empty($_SESSION['loggedin'])) {
-        header('Location: user_login.php', TRUE, 307); // Location angepasst
+        header('Location: ' . APP_URL . '/login', TRUE, 307); // Location angepasst
         exit;
     }
 
-    require APP_ROOT . '/src/templates/loggedin.tpl.php';
+    $template = 'loggedin.tpl.php';
+
+    return [
+        'template' => $template,
+    ];
+
+    // require APP_ROOT . '/src/templates/loggedin.tpl.php';
 }
 
-function logoutAction()
+function logoutAction() 
 {
     ## Session zurücksetzen
     $_SESSION = [];
@@ -32,6 +38,8 @@ function logoutAction()
 
     header('Location: ' . APP_URL . '/login', TRUE, 307); // Location angepasst
 
+    return $_SESSION;
+
 }
 
 function userEditAction()
@@ -43,7 +51,14 @@ function userEditAction()
 
     $user = User::find($id) ?? exit("kein User mit der Id = $id gefunden!");
 
-    require APP_ROOT . '/src/templates/user_edit.tpl.php';
+    $template = 'user_edit.tpl.php';
+
+    return [
+        'user' => $user,
+        'template' => $template,
+    ];
+
+    // require APP_ROOT . '/src/templates/user_edit.tpl.php';
 }
 
 function userListAction()
@@ -93,7 +108,15 @@ function loginAction()
         }
     }
 
-    require APP_ROOT . '/src/templates/user_login.tpl.php';
+    $template = 'user_login.tpl.php';
+
+    return [
+        'user' => $user ?? NULL,
+        'message' => $message ?? NULL,
+        'template' => $template,
+    ];
+
+    //require APP_ROOT . '/src/templates/user_login.tpl.php';
 }
 
 function registerAction()
@@ -101,5 +124,11 @@ function registerAction()
 
     // wir haben die Logik noch nicht implementiert
 
-    require APP_ROOT . '/src/templates/user_register.tpl.php';
+    $template = 'user_register.tpl.php';
+
+    return [
+        'template' => $template,
+    ];
+
+    // require APP_ROOT . '/src/templates/user_register.tpl.php';
 }
