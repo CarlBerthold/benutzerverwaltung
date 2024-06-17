@@ -1,16 +1,3 @@
-<?php
-require_once __DIR__ . '/inc/database.inc.php';
-require_once __DIR__ . '/inc/User.php';
-
-$db = connectDB();
-User::setDb($db);
-
-$id = 33;
-
-$user = User::find($id) ?? exit('no User found');
-
-
-?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -19,18 +6,18 @@ $user = User::find($id) ?? exit('no User found');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benutzerdaten bearbeiten</title>
     <link href="<?= ASSET_PATH ?>/css/fonts_sourcesanspro.css" rel="stylesheet">
-    <link href="<?= ASSET_PATH ?>css/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSET_PATH ?>css/style.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSET_PATH ?>css/form.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSET_PATH ?>css/edit.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/material-icons.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/style.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/form.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/edit.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <main id="main">
         <nav id="nav">
             <ul>
-                <li><a href="logout.php">Logout</a></li>
-                <li><a href="user_list.php">Benutzerverwaltung</a></li>
+                <li><a href="<?= APP_URL ?>/logout">Logout</a></li>
+                <li><a href="<?= APP_URL ?>/user/list">Benutzerverwaltung</a></li>
             </ul>
         </nav>
         <h1>Benutzerdaten bearbeiten</h1>
@@ -40,7 +27,7 @@ $user = User::find($id) ?? exit('no User found');
                     <legend>Benutzerdaten</legend>
                     <div>
                         <label for="id">Benutzer-Id: </label>
-                        <input type="text" id="id" readonly class="readonly" value="<?= $user->id?>">
+                        <input type="text" id="id" readonly class="readonly" value="<?= $user->id ?>">
                     </div>
                     <div>
                         <label for="firstname">Vorname: </label>

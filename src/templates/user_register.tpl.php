@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrierungsformular</title>
-    <link href="<?= ASSET_PATH ?>css/fonts_sourcesanspro.css" rel="stylesheet">
-    <link href="<?= ASSET_PATH ?>css/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSET_PATH ?>css/login.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSET_PATH ?>css/register.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/fonts_sourcesanspro.css" rel="stylesheet">
+    <link href="<?= ASSET_PATH ?>/css/material-icons.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/login.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/register.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <h1>Registrierungsformular</h1>
-    <form action="#" method="post">
+    <form action="<?= APP_URL ?>/register" method="post">
         <fieldset id="reg-data">
             <legend>Registrierung</legend>
 
@@ -85,7 +85,7 @@
             <div>
                 <button type="submit" id="submit_button" tabindex="6">registrieren</button>
                 <button type="reset" id="reset_button" tabindex="0">zurücksetzen</button>
-                <a href="user_login.php" class="button spacer_left" tabindex="0">zum Login</a>
+                <a href="<?= APP_URL ?>/login" class="button spacer_left" tabindex="0">zum Login</a>
             </div>
         </fieldset>
     </form>

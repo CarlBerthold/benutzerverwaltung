@@ -1,14 +1,3 @@
-<?php
-
-# Session starten
-session_start();
-
-if (empty($_SESSION['loggedin'])) {
-    header('Location: user_login.php', TRUE, 307); // Location angepasst
-    exit;
-}
-
-?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -16,10 +5,10 @@ if (empty($_SESSION['loggedin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>geschützter Bereich</title>
-    <link href="<?= ASSET_PATH ?>css/fonts_sourcesanspro.css" rel="stylesheet">
-    <link href="<?= ASSET_PATH ?>css/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSET_PATH ?>css/style.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSET_PATH ?>css/form.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/fonts_sourcesanspro.css" rel="stylesheet">
+    <link href="<?= ASSET_PATH ?>/css/material-icons.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/style.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_PATH ?>/css/form.css" rel="stylesheet" type="text/css">
     <style>
         article {
             width: fit-content;
@@ -41,8 +30,8 @@ if (empty($_SESSION['loggedin'])) {
     <main id="main">
         <nav id="nav">
             <ul>
-                <li><a href="logout.php">Logout</a></li>
-                <li><a href="user_list.php">Benutzerverwaltung</a></li>
+            <li><a href="<?= APP_URL ?>/logout">Logout</a></li>
+            <li><a href="<?= APP_URL ?>/user/list">Benutzerverwaltung</a></li>
             </ul>
         </nav>
         <h1>geschützter Bereich</h1>
