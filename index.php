@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 # Applikationskonstanten definieren
 
@@ -11,11 +11,13 @@ define('APP_ROOT', $_SERVER['DOCUMENT_ROOT'] . APP_PATH);
 // define('ASSET_PATH', APP_URL . '/assets');
 define('ASSET_PATH', APP_URL);
 
-
-# Funktionsbibliothek laden
-require_once APP_ROOT . '/inc/action_functions.php';
+# Funktionsbibliothek, Klassenbibliotheken und Konfigurationen laden
+// require_once APP_ROOT . '/inc/action_functions.php';
 require_once APP_ROOT . '/inc/database.inc.php';
-require_once APP_ROOT . '/inc/User.php';
+require_once APP_ROOT . '/src/Entities/User.php';
+require_once APP_ROOT . '/src/Controllers/LoginController.php';
+require_once APP_ROOT . '/src/Controllers/UserController.php';
+
 
 # Session starten
 session_start();
@@ -28,52 +30,78 @@ $db = connectDB();
 
 User::setDb($db);
 
+
 ## für die gewünschte Aktion benötigen wir die Request-URI aber ohne den Application-Path (Konstante APP_PATH)
 
 $routePath = substr(explode('?', $_SERVER['REQUEST_URI'])[0], strlen(APP_PATH));
 
 switch ($routePath) {
-    case '/user/list' : 
+    case '/user/list':
         // der User möchte die Seite mit der Auflistung bzw. Tabelle aller User sehen
-        //require APP_ROOT . '/user_list.php';
-        require APP_ROOT . '/src/Controllers/user_list.php';
-        $data = userListAction();
-
+        // require APP_ROOT . '/user_list.php';
+        // $requestController = new UserController();
+        // $requestController->userListAction();
+        # Refactoring - in den Cases werden nur die Controller-Klasse und die Action-Methode Variablen zugewiesen -> die Instanziierung und der Aufruf der Methode erfolgt nach dem switch
+        // extract($data); // erzeugt die Variablen $users, $columnNamesDe, $template - besser nach dem switch ausführen - Codedublizierung
+        $controller = 'UserController';
+        $method = 'userListAction';
         break;
-    case '/user/edit/1' : 
+        // exit;
+    case '/user/edit/1':
         // der User möchte das Formular zum Editieren eines Users mit der id 1 laden
         // require APP_ROOT . '/user_edit.php';
-        require APP_ROOT . '/src/Controllers/user_edit.php';
-        $data = userEditAction();
+        // $requestController = new UserController();
+        // $requestController->userEditAction();
+        $controller = 'UserController';
+        $method = 'userEditAction';
+        // extract($data);
         break;
-    case '/login' :
+        // exit;
+    case '/login':
         // der User möchte das Login-Formular laden
-        //require APP_ROOT . '/user_login.php';
-        require APP_ROOT . '/src/Controllers/login.php';
-        $data = loginAction();
+        // require APP_ROOT . '/user_login.php';
+        // $requestController = new LoginController();
+        // $requestController->loginAction();
+        $controller = 'LoginController';
+        $method = 'loginAction';
         break;
-    case '/register' :
+        // exit;
+    case '/register':
         // der User möchte das Registrierungsformular laden
         // require APP_ROOT . '/user_register.php';
-        require APP_ROOT . '/src/Controllers/register.php';
-        $data = registerAction();
+        // $requestController = new UserController();
+        // $requestController->registerAction();
+        $controller = 'UserController';
+        $method = 'registerAction';
         break;
-    case '/logout' :
+        // exit;
+    case '/logout':
         // der User hat sich aktiv ausgelogged und wir auf die Login-Seite weitergeleitet
-        require APP_ROOT . '/src/Controllers/logout.php';
-        $data = logoutAction();
-        exit;
-    case '/loggedin' :
-        // der User hat sich erfolgreich eingelogged und wird auf die geschützte Loggedin-Seite weitergeleitet
-        require APP_ROOT . '/src/Controllers/loggedin.php';
-        $data = loggedinAction();
+        // require APP_ROOT . '/logout.php';
+        // $requestController = new LoginController();
+        // $requestController->logoutAction();
+        $controller = 'LoginController';
+        $method = 'logoutAction';
         break;
-    default: 
+        // exit;
+    case '/loggedin':
+        // der User hat sich erfolgreich eingelogged und wird auf die geschützte Loggedin-Seite weitergeleitet
+        // require APP_ROOT . '/loggedin.php';
+        // $requestController = new LoginController();
+        // $requestController->loggedinAction();
+        $controller = 'LoginController';
+        $method = 'loggedinAction';
+        break;
+        // exit;
+    default:
         // auf index-Seite umleiten oder ggf. Fehlerseite 404 ausgeben...
-        // die('Seite existiert nicht');
-        require APP_ROOT . '/src/Controllers/index.php';
+        die('Seite existiert nicht');
 }
 
-extract($data);
+# hier jetzt die Instanziierung der Controllers und der Aufruf der Action-Methode
+$requestController = new $controller();
 
-require APP_ROOT . '/src/templates/' . $template;
+$requestController->$method();
+
+/* extract($data);
+require APP_ROOT . '/src/templates/' . $template;  */
